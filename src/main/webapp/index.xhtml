@@ -1,0 +1,90 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:ui="http://java.sun.com/jsf/facelets"    
+      
+      
+      >
+
+	<f:view>
+		<head>
+			
+		</head>
+		<body>
+		
+		<h2>Formulaire d'inscription</h2>
+			
+			
+		<h:form id="theForm">
+		
+			<h:outputLabel value="Matricule" />
+			<p>
+				<h:inputText value="#{backingBeans.mat}" disabled="true" />			
+			</p>
+			<h:outputLabel value="Nom" />
+			<p>
+				<h:inputText id="nom" value="#{backingBeans.infosInscription.nom}" required="true" requiredMessage="Le nom est obligatoire"/>			
+				<span> <h:message for="nom"/> </span>
+			</p>
+			<h:outputLabel value="Prenom" />
+			<p>
+				<h:inputText id="prenom" value="#{backingBeans.infosInscription.prenom}" required="true" requiredMessage="Le prenom est obligatoire"/>			
+				<span> <h:message for="prenom"/> </span>
+			</p>
+			<h:outputLabel value="Niveau" />
+			<p>
+				<h:inputText id="niveau" value="#{backingBeans.infosInscription.niveau}" required="true" requiredMessage="Le niveau d'etude est obligatoire"/>			
+				<span> <h:message for="niveau"/> </span>
+			</p>
+		
+				<h:commandButton action="#{backingBeans.Validation()}" value="Envoyer" />
+		
+		</h:form>
+		
+		<table>
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>Matricule</th>
+					<th>Nom</th>
+					<th>Prenom</th>
+					<th>Niveau</th>
+					<th>Action</th>
+				</tr>
+			
+			</thead>
+			<tbody>
+				<ui:repeat var="infosUsers" value="#{backingBeans.etudiantsMethodes.allUsers()}">				
+					<tr>
+						<th><h:outputLabel value="#{infosUsers.id}" /></th>
+						<th><h:outputLabel value="#{infosUsers.matricule}" /></th>
+						<th><h:outputLabel value="#{infosUsers.nom}" /></th>
+						<th><h:outputLabel value="#{infosUsers.prenom}" /></th>
+						<th><h:outputLabel value="#{infosUsers.niveau}" /></th>
+						<th>
+						<h:form>
+						
+							<h:commandButton action="#{backingBeans.essaie(infosUsers.matricule)}" value="Envoyer" immediate="true"/>
+						
+						</h:form>
+							
+						</th>
+					</tr>		
+				</ui:repeat>
+			</tbody>
+			
+		
+	
+		
+		</table>
+						
+		</body>
+	
+	
+	
+	
+	
+	
+	</f:view>
+</html>
